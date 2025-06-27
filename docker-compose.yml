@@ -1,0 +1,35 @@
+services:
+  product-service:
+    build: ./Products
+    ports:
+      - "8081:8081"
+    networks:
+      - tecnoshop
+
+  category-service:
+    build: ./Categories
+    ports:
+      - "8082:8082"
+    networks:
+      - tecnoshop
+
+  user-service:
+    build: ./Users
+    ports:
+      - "8083:8083"
+    networks:
+      - tecnoshop
+  api-gateway:
+    build:
+      context: ./Gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - product-service
+      - category-service
+    networks:
+      - tecnoshop
+
+networks:
+  tecnoshop:
+    driver: bridge
