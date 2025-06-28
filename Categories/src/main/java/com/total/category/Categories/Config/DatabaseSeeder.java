@@ -15,19 +15,19 @@ public class DatabaseSeeder {
         return args -> {
             if (repository.count() == 0) {
                 Category cat1 = new Category();
-                cat1.setName("Electrónica");
+                cat1.setName("Electrónica de consumo");
 
                 Category cat2 = new Category();
-                cat2.setName("Ropa");
+                cat2.setName("Equipos de audio");
 
                 Category cat3 = new Category();
-                cat3.setName("Hogar");
+                cat3.setName("Equipos de seguridad:");
 
                 Category cat4 = new Category();
-                cat4.setName("Juguetes");
+                cat4.setName("Accesorios");
 
                 Category cat5 = new Category();
-                cat5.setName("Libros");
+                cat5.setName("Componentes electrónicos:");
 
                 repository.saveAll(List.of(cat1, cat2, cat3, cat4, cat5));
                 System.out.println("Categorías iniciales creadas.");

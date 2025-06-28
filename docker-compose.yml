@@ -19,6 +19,9 @@ services:
       - "8083:8083"
     networks:
       - tecnoshop
+    environment:
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_EXPIRATION_MS=${JWT_EXPIRATION_MS}
   api-gateway:
     build:
       context: ./Gateway
@@ -27,6 +30,9 @@ services:
     depends_on:
       - product-service
       - category-service
+    environment:
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_EXPIRATION_MS=${JWT_EXPIRATION_MS}
     networks:
       - tecnoshop
 
