@@ -35,15 +35,11 @@ public class ProductController {
         product.setName(request.name());
         product.setDescription(request.description());
         product.setPrice(request.price());
+        if(!request.imageUrl().isEmpty())
+            product.setImageUrl(request.imageUrl());
         product.setCategoryId(request.categoryId());
-        try{
-            Product savedProduct = productRepository.save(product);
-            return ResponseEntity.status(201).body(savedProduct);
-        }catch (Exception e){
-            e.printStackTrace(); // MUY importante para ver el "Caused by"
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(Map.of("error", e.getMessage()));
-        }
+        Product savedProduct = productRepository.save(product);
+        return ResponseEntity.status(201).body(savedProduct);
     }
 
     @GetMapping("/{id}")
