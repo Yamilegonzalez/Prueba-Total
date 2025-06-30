@@ -35,7 +35,7 @@ public class ProductController {
         product.setName(request.name());
         product.setDescription(request.description());
         product.setPrice(request.price());
-        if(!request.imageUrl().isEmpty())
+        if(request.imageUrl() != null && !request.imageUrl().isBlank())
             product.setImageUrl(request.imageUrl());
         product.setCategoryId(request.categoryId());
         Product savedProduct = productRepository.save(product);
@@ -55,7 +55,10 @@ public class ProductController {
                 .map(existing -> {
                     existing.setName(request.name());
                     existing.setPrice(request.price());
+                    existing.setDescription(request.description());
                     existing.setCategoryId(request.categoryId());
+                    if(request.imageUrl() != null && !request.imageUrl().isBlank())
+                        existing.setImageUrl(request.imageUrl());
                     Product updatedProduct = productRepository.save(existing);
                     return ResponseEntity.ok(updatedProduct);
                 })
